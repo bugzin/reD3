@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html>
+    
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            Bubble Chart
+        </title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+            text { font: 11px sans-serif; } .bordered { border:1px solid #ccc; -webkit-border-radius:
+            5px; -moz-border-radius: 5px; border-radius: 5px; margin-top: 75px; margin-bottom:
+            50px; text-align: center; }
+        </style>
+        <script src="./../lib/d3.js">
+                                                        
+        </script>
+        <script src="./../src/bubble.js">
+                                                        
+        </script>
+    </head>
+    
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="">Bubble Chart</a>
+                </div>
+            </div>
+        </div>
+        <div class="container bordered">
+<!--             <ul class="nav nav-tabs" id="myTab">
+                <li class="active">
+                    <a href="#chart">Chart</a>
+                </li>
+                <li>
+                    <a href="#script">Script</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="chart">
+                    <pre class="prettyprint linenums">
+                        <script>
+                                    var bubble = new Bubble();
+                        </script>
+                    </pre>
+                </div>
+                <div class="tab-pane" id="script">
+                </div>
+            </div>
+ -->            
+            <div id="bubble">
+            </div>
+            <button id="update" class="btn">
+                Update
+            </button>
+            <p>
+                &nbsp;
+            </p>
+        </div>
+        <script>
+                                    var data = {
+                                "children": [{
+                                    "name": "cluster",
+                                    "cname": "AgglomerativeCluster",
+                                    "value": 3938
+                                }, {
+                                    "name": "chart",
+                                    "cname": "CommunityStructure",
+                                    "value": 3812
+                                }, {
+                                    "name": "dexter",
+                                    "cname": "HierarchicalCluster",
+                                    "value": 6714
+                                }, {
+                                    "name": "cluster",
+                                    "cname": "MergeEdge",
+                                    "value": 743
+                                }, {
+                                    "name": "graph",
+                                    "cname": "BetweennessCentrality",
+                                    "value": 3534
+                                }, {
+                                    "name": "graph",
+                                    "cname": "LinkDistance",
+                                    "value": 5731
+                                }, {
+                                    "name": "graph",
+                                    "cname": "MaxFlowMinCut",
+                                    "value": 7840
+                                }, {
+                                    "name": "graph",
+                                    "cname": "ShortestPaths",
+                                    "value": 5914
+                                }, {
+                                    "name": "graph",
+                                    "cname": "SpanningTree",
+                                    "value": 3416
+                                }, {
+                                    "name": "optimization",
+                                    "cname": "AspectRatioBanker",
+                                    "value": 7074
+                                }]
+                            };
+
+                            var dataB = {
+                                "children": [{
+                                    "name": "clust",
+                                    "cname": "AgglomerativeCluster",
+                                    "value": 393
+                                }, {
+                                    "name": "charter",
+                                    "cname": "CommunityStructure",
+                                    "value": 3812
+                                }, {
+                                    "name": "dexter",
+                                    "cname": "HierarchicalCluster",
+                                    "value": 6714
+                                }, {
+                                    "name": "cluster",
+                                    "cname": "MergeEdge",
+                                    "value": 7433
+                                }, {
+                                    "name": "graph",
+                                    "cname": "BetweennessCentrality",
+                                    "value": 353
+                                }, {
+                                    "name": "graph",
+                                    "cname": "LinkDistance",
+                                    "value": 573
+                                }, {
+                                    "name": "graph",
+                                    "cname": "MaxFlowMinCut",
+                                    "value": 4840
+                                }, {
+                                    "name": "graph",
+                                    "cname": "ShortestPaths",
+                                    "value": 5914
+                                }, {
+                                    "name": "graph",
+                                    "cname": "SpanningTree",
+                                    "value": 3416
+                                }, {
+                                    "name": "optimization",
+                                    "cname": "AspectRatioBanker",
+                                    "value": 7074
+                                }]
+                            };
+
+                            var el = document.getElementById('bubble');
+                            var bubble = new reD3.Bubble(el, {
+                                diameter: 800,
+                                text: 'cname',
+                                color: 'name',
+                                onClick: function(d) {
+                                    console.log(d)
+                                }
+                            });
+
+                            bubble.render(data);
+                            document.getElementById('update').onclick = function() {
+                                bubble.clear();
+                                bubble.render(dataB);
+                            }
+        </script>
+    </body>
+
+</html>
