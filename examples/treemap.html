@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html>
+    
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            Treemap Chart
+        </title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+            text { font: 11px sans-serif; } .bordered { border:1px solid #ccc; -webkit-border-radius:
+            5px; -moz-border-radius: 5px; border-radius: 5px; margin-top: 75px; margin-bottom:
+            50px;  }
+            .center {text-align: center;}
+        </style>
+        
+        <script src="./../lib/d3.js">
+        </script>
+
+        <script src="./../src/util.js">
+        </script>
+        
+        <script src="./../src/treemap.js">
+        </script>
+    </head>
+    
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="">reD3 [Reusable D3 Charts]</a>
+                    <a class="brand" href="">Treemap Chart</a>
+                </div>
+            </div>
+        </div>
+        <div class="container bordered">
+            <div id="treemap">
+            </div>
+            <hr />
+            <p class="center">
+                <button id="update" class="btn center">
+                    Update
+                </button>
+            </p>
+            <p>
+                &nbsp;
+            </p>
+        </div>
+        <script>
+            var data = {
+                "children": [{
+                    "name": "cluster",
+                    "title": "AgglomerativeCluster",
+                    "value": 3938
+                }, {
+                    "name": "chart",
+                    "title": "CommunityStructure",
+                    "value": 3812
+                }, {
+                    "name": "dexter",
+                    "title": "HierarchicalCluster",
+                    "value": 6714
+                }, {
+                    "name": "cluster",
+                    "title": "MergeEdge",
+                    "value": 743
+                }, {
+                    "name": "graph",
+                    "title": "BetweennessCentrality",
+                    "value": 3534
+                }, {
+                    "name": "graph",
+                    "title": "LinkDistance",
+                    "value": 5731
+                }, {
+                    "name": "graph",
+                    "title": "MaxFlowMinCut",
+                    "value": 7840
+                }, {
+                    "name": "graph",
+                    "title": "ShortestPaths",
+                    "value": 5914
+                }, {
+                    "name": "graph",
+                    "title": "SpanningTree",
+                    "value": 3416
+                }, {
+                    "name": "optimization",
+                    "title": "AspectRatioBanker",
+                    "value": 7074
+                }]
+            };
+
+            var dataB = {
+                "children": [{
+                    "name": "clust",
+                    "title": "AgglomerativeCluster",
+                    "value": 393
+                }, {
+                    "name": "charter",
+                    "title": "CommunityStructure",
+                    "value": 3812
+                }, {
+                    "name": "dexter",
+                    "title": "HierarchicalCluster",
+                    "value": 6714
+                }, {
+                    "name": "cluster",
+                    "title": "MergeEdge",
+                    "value": 7433
+                }, {
+                    "name": "graph",
+                    "title": "BetweennessCentrality",
+                    "value": 353
+                }, {
+                    "name": "graph",
+                    "title": "LinkDistance",
+                    "value": 573
+                }, {
+                    "name": "graph",
+                    "title": "MaxFlowMinCut",
+                    "value": 4840
+                }, {
+                    "name": "graph",
+                    "title": "ShortestPaths",
+                    "value": 5914
+                }, {
+                    "name": "graph",
+                    "title": "SpanningTree",
+                    "value": 3416
+                }, {
+                    "name": "optimization",
+                    "title": "AspectRatioBanker",
+                    "value": 7074
+                }]
+            };
+
+            var el = document.getElementById('treemap');
+            var treemap = new reD3.Treemap(el, {
+                width: 950,
+                height: 600,
+                text: 'title',
+                color: 'title',
+                onClick: function(d) {
+                    console.log(d)
+                }
+            });
+
+            treemap.render(data);
+            document.getElementById('update').onclick = function() {
+                treemap.clear();
+                treemap.render(dataB);
+            }
+        </script>
+    </body>
+
+</html>
