@@ -1,6 +1,7 @@
 (function(global) {
 
     global.reD3 = global.reD3 || {};
+    reD3.util = {};
 
     function fontSize(d, i) {
         var size = d.dx / 5.8;
@@ -72,6 +73,13 @@
         this.firstChild.data = '';
     }
 
+    reD3.util.mixin = function(obj, props) {
+        for (var prop in props) {
+            obj[prop] = props[prop];
+        }
+        return obj;
+    }
+    
     reD3.wordWrap = wordWrap;
     
 })(this);   
