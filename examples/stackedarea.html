@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>
+			Stacked Area Chart
+		</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/stackedarea.css">
+		<script src="./../lib/d3.js">
+		                                                                
+		</script>
+		<script src="./../src/util.js">
+		                                                                
+		</script>		
+		<script src="./../src/stackedarea.js">
+		                                                                
+		</script>
+	</head>
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="">reD3 [Reusable D3 Charts]</a>
+                    <a class="brand" href="">StackedArea Chart</a>
+                </div>
+            </div>
+        </div>
+        <div class="container bordered">
+			<div id="stackedarea">
+			</div>
+			<hr />
+            <button id="update" class="btn">
+                Update
+            </button>
+            <p>
+                &nbsp;
+            </p>
+        </div>
+		<script>
+			var el = document.getElementById('stackedarea');
+			var sa = new reD3.StackedArea(el, {
+				width: 960,
+				height: 500,
+				interpolation: 'linear',
+				margin: {top: 20}
+			});
+
+			var format = d3.time.format("%m/%d/%y");;
+			
+			d3.csv("data/sa.csv", function(data) {
+				data.forEach(function(d) {
+					d.date = format.parse(d.date);
+					d.value = +d.value;
+				});
+				sa.render(data);
+			});
+
+			document.getElementById('update').onclick = function() {
+                sa.clear();
+    			d3.csv("data/sab.csv", function(data) {
+					data.forEach(function(d) {
+						d.date = format.parse(d.date);
+						d.value = +d.value;
+					});
+					sa.render(data);
+				});
+
+            }
+		</script>
+	</body>
+</html>
