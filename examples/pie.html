@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+    
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            Pie Chart
+        </title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+            text { font: 11px sans-serif; } .bordered { border:1px solid #ccc; -webkit-border-radius:
+            5px; -moz-border-radius: 5px; border-radius: 5px; margin-top: 75px; margin-bottom:
+            50px; text-align: center; }
+        </style>
+        <script src="./../lib/d3.js">
+        </script>
+        <script src="./../src/pie.js">
+        </script>
+    </head>
+    
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="">reD3 [Reusable D3 Charts]</a>
+                    <a class="brand" href="">Pie Chart</a>
+                </div>
+            </div>
+        </div>
+        <div class="container bordered">
+            <div id="pie">
+            </div>
+            <div id="pie1">
+            </div>
+            <hr />
+            <button id="update" class="btn">
+                Update
+            </button>
+            <p>
+                &nbsp;
+            </p>
+        </div>
+        <script>
+            var el = document.getElementById('pie');
+            var pie = new reD3.Pie(el, {
+                width: 500,
+                height: 500,
+                text: 'age',
+                color: 'age',
+                value: 'population',
+                onClick: function(d) {
+                    console.log(d)
+                }
+            });
+            
+            d3.csv("data/pie.csv", function(error, data) {
+                data.forEach(function(d) {
+                    d.population = +d.population;
+                });
+                pie.render(data);
+            });
+
+            document.getElementById('update').onclick = function() {
+                pie.clear();
+                d3.csv("data/pieb.csv", function(error, data) {
+                    data.forEach(function(d) {
+                        d.population = +d.population;
+                    });
+                    pie.render(data);
+                });
+            }
+        </script>
+    </body>
+</html>
