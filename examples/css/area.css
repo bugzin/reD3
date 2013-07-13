@@ -9,10 +9,6 @@ body {
   shape-rendering: crispEdges;
 }
 
-.area {
-  fill: steelblue;
-}
-
 .bordered {
     border: 1px solid #ccc;
     -webkit-border-radius: 5px;

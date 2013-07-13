@@ -71,6 +71,8 @@
             yAxis = this.yAxis,
             xValue = this.xValue,
             yValue = this.yValue,
+            yAxisText = options.yAxisText || '',
+            color = options.color || 'steelblue',
             width = this.width,
             height = this.height,
             area = this.area,
@@ -86,7 +88,8 @@
             svg.append("path")
                 .datum(data)
                 .attr("class", "area")
-                .attr("d", area);
+                .attr("d", area)
+                .attr("fill", color);
 
             svg.append("g")
                 .attr("class", "x axis")
@@ -101,7 +104,7 @@
                 .attr("y", 6)
                 .attr("dy", ".71em")
                 .style("text-anchor", "end")
-                .text("Price ($)");
+                .text(yAxisText);
         },
         
         clear: function() {
