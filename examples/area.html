@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>
+			Area Chart
+		</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/area.css">
+		<script src="./../lib/d3.js">
+		</script>
+		<script src="./../src/util.js">
+		</script>
+		<script src="./../src/area.js">		                                                                
+		</script>
+	</head>
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="">reD3 [Reusable D3 Charts]</a>
+                    <a class="brand" href="">Area Chart</a>
+                </div>
+            </div>
+        </div>
+        <div class="container bordered">
+			<div id="area">
+			</div>
+			<hr />
+            <button id="update" class="btn">
+                Update
+            </button>
+            <p>
+                &nbsp;
+            </p>
+        </div>
+		<script>
+			var el = document.getElementById('area');
+			var area = new reD3.Area(el, {
+				width: 960,
+				height: 500,
+				xValue: 'date',
+				yValue: 'close',
+				margin: {top: 20}
+			});
+
+			var parseDate = d3.time.format("%d-%b-%y").parse;
+
+			d3.tsv("data/area.tsv", function(error, data) {
+				data.forEach(function(d) {
+					d.date = parseDate(d.date);
+					d.close = +d.close;
+				});
+				area.render(data);	
+			});
+
+			document.getElementById('update').onclick = function() {
+                area.clear();
+    			
+    			d3.tsv("data/areab.tsv", function(error, data) {
+					data.forEach(function(d) {
+						d.date = parseDate(d.date);
+						d.close = +d.close;
+					});
+					area.render(data);
+				});
+            }
+		</script>
+	</body>
+</html>
