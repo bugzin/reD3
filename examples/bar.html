@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bar Chart</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bar.css">
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="">reD3 [Reusable D3 Charts]</a>
+                <a class="brand" href="">Bar Chart</a>
+            </div>
+        </div>
+    </div>
+    <div class="container bordered">
+        <div id="bar">
+        </div>
+        <hr />
+        <button id="update" class="btn">
+            Update
+        </button>
+        <p>
+            &nbsp;
+        </p>
+    </div>
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="../src/util.js"></script>
+    <script src="../src/bar.js"></script>
+    <script>
+        var el = document.getElementById('bar');
+        var options = {
+            width: 960,
+            height: 600,
+            yAxisText: 'Frequency',
+            yValue: 'frequency',
+            xValue: 'letter',
+            onClick: function (d) {
+                console.log(d);
+            },
+            onMouseOver: function(d) {
+                console.log(d);
+            },
+            onMouseOut: function (d) {
+            }
+        };
+
+        var bar = new reD3.Bar(el, options);
+        
+        d3.tsv("data/bar.tsv", type, function(error, data) {
+            bar.clear();
+            bar.render(data);
+        });
+
+        document.getElementById('update').onclick = function () {
+            d3.tsv("data/barb.tsv", type, function(error, data) {
+                bar.clear();
+                bar.render(data);
+            });            
+        };
+        
+        function type(d) {
+            d.frequency = +d.frequency;
+            return d;
+        }
+    </script>
+</body>
+<html>

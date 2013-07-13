@@ -56,11 +56,9 @@
             });
         },
 
-
         clear: function() {
             this.svg.selectAll('.node').remove();
         }
-
     };
 
     reD3.Bubble = Bubble;
