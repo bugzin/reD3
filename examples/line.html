@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        Line Chart
+    </title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/line.css">
+    <script src="./../lib/d3.js">
+    </script>
+    <script src="./../src/util.js">
+    </script>
+    <script src="./../src/line.js">
+    </script>
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="">reD3 [Reusable D3 Charts]</a>
+                <a class="brand" href="">Line Chart</a>
+            </div>
+        </div>
+    </div>
+    <div class="container bordered">
+        <div id="line">
+        </div>
+        <hr />
+        <button id="update" class="btn">
+            Update
+        </button>
+        <p>
+            &nbsp;
+        </p>
+    </div>
+
+    <script>
+        var el = document.getElementById('line');
+        var line = new reD3.Line(el, {
+            width: 960,
+            height: 500,
+            xValue: 'date',
+            yValue: 'close',
+            yAxisText: 'Price ($)',
+            margin: {
+                top: 20
+            }
+        });
+
+        var parseDate = d3.time.format("%d-%b-%y").parse;
+
+        d3.tsv("data/line.tsv", function(error, data) {
+            data.forEach(function(d) {
+                d.date = parseDate(d.date);
+                d.close = +d.close;
+            });
+            line.render(data);
+        });
+
+        document.getElementById('update').onclick = function() {
+            line.clear();
+
+            d3.tsv("data/lineb.tsv", function(error, data) {
+                data.forEach(function(d) {
+                    d.date = parseDate(d.date);
+                    d.close = +d.close;
+                });
+                line.render(data);
+            });
+        }
+    </script>
+
+</body>
+
+</html>
