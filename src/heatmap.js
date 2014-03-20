@@ -30,65 +30,87 @@
                 left: 40
             },
 
-            var gridSize = Math.floor(width / 24),
-                legendElementWidth = gridSize*2,
-                buckets = 9;
+            var this.gridSize = gridSize = Math.floor(width / 24),
+                this.legendElementWidth = legendElementWidth = gridSize*2,
+                this.buckets = buckets = 9;
 
-            margin = reD3.util.mixin(margin, oMargin);
+            this.margin = margin = reD3.util.mixin(margin, oMargin);
 
             width = this.width = width - margin.left - margin.right;
             height = this.height = height - margin.top - margin.bottom;
 
-            var colorScale = d3.scale.quantile()
-                .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
-                .range(this.colors);
-
-            var svg = d3.select(this.element).append("svg")
+            var svg = this.svg = d3.select(this.element).append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+            var dayLabels = svg.selectAll(".dayLabel")
+              .data(this.days)
+              .enter().append("text")
+                .text(function (d) { return d; })
+                .attr("x", 0)
+                .attr("y", function (d, i) { return i * gridSize; })
+                .style("text-anchor", "end")
+                .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+                .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+             var timeLabels = svg.selectAll(".timeLabel")
+                 .data(times)
+                 .enter().append("text")
+                   .text(function(d) { return d; })
+                   .attr("x", function(d, i) { return i * gridSize; })
+                   .attr("y", 0)
+                   .style("text-anchor", "middle")
+                   .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+                   .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
         },
 
         render: function(data) {
-            var svg = this.svg,
-            x = this.x,
-            y = this.y,
-            xAxis = this.xAxis,
-            yAxis = this.yAxis,
-            height = this.height,
-            xValue = this.xValue,
-            yValue = this.yValue,
-            yAxisText = this.yAxisText,
-            line = this.line;
+            var colorScale = d3.scale.quantile()
+                .domain([0, this.buckets - 1, d3.max(data, function (d) { return d.value; })])
+                .range(this.colors);
 
-            x.domain(d3.extent(data, function(d) {
-                return d[xValue];
-            }));
-            y.domain(d3.extent(data, function(d) {
-                return d[yValue];
-            }));
+            var gridSize = this.gridSize,
+                colors = this.colors,
+                legendElementWidth = this.legendElementWidth,
+                svg = this.svg,
+                margin = this.margin;
 
-            svg.append("g")
-                .attr("class", "x axis")
-                .attr("transform", "translate(0," + height + ")")
-                .call(xAxis);
+          var heatMap = svg.selectAll(".hour")
+              .data(data)
+              .enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "hour bordered")
+              .attr("width", gridSize)
+              .attr("height", gridSize)
+              .style("fill", colors[0]);
 
-            svg.append("g")
-                .attr("class", "y axis")
-                .call(yAxis)
-                .append("text")
-                .attr("transform", "rotate(-90)")
-                .attr("y", 6)
-                .attr("dy", ".71em")
-                .style("text-anchor", "end")
-                .text(yAxisText);
+          heatMap.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
 
-            svg.append("path")
-                .datum(data)
-                .attr("class", "line")
-                .attr("d", line);
+          heatMap.append("title").text(function(d) { return d.value; });
+              
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; })
+              .enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height - margin.bottom)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize - margin.bottom);
 
         },
 
@@ -97,6 +119,6 @@
         }
     }
 
-    reD3.Line = Line;
+    reD3.DayHourHeatmap = DayHourHeatmap;
 
 })(this);
