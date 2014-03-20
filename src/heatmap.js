@@ -14,13 +14,14 @@
             var options = this.options,
             width = options.width || 960,
             height = options.height || 500,
-            xValue = options.xValue || 'date',
-            yValue = options.yValue || 'value',
+            colors = options.colors || ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"],
+            days = options.days || ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+            times = options.times || ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"],
             oMargin = options.margin;
 
-            this.xValue = xValue;
-            this.yValue = yValue;
-            this.yAxisText = options.yAxisText || '';
+            this.days = days;
+            this.times = times;
+            this.colors = colors;
             
             var margin = {
                 top: 20,
@@ -29,34 +30,20 @@
                 left: 40
             },
 
+            var gridSize = Math.floor(width / 24),
+                legendElementWidth = gridSize*2,
+                buckets = 9;
+
             margin = reD3.util.mixin(margin, oMargin);
 
             width = this.width = width - margin.left - margin.right;
             height = this.height = height - margin.top - margin.bottom;
 
-            var x = this.x = d3.time.scale()
-                .range([0, width]);
+            var colorScale = d3.scale.quantile()
+                .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+                .range(this.colors);
 
-            var y = this.y = d3.scale.linear()
-                .range([height, 0]);
-
-            this.xAxis = d3.svg.axis()
-                .scale(x)
-                .orient("bottom");
-
-            this.yAxis = d3.svg.axis()
-                .scale(y)
-                .orient("left");
-
-            this.line = d3.svg.line()
-                .x(function(d) {
-                    return x(d[xValue]);
-                })
-                .y(function(d) {
-                    return y(d[yValue]);
-                });
-
-            this.svg = d3.select(this.element).append("svg")
+            var svg = d3.select(this.element).append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
