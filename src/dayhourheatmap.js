@@ -28,22 +28,26 @@
                 right: 30,
                 bottom: 30,
                 left: 40
-            },
+            };
+            
+            var gridSize = Math.floor(width / 24),
+                legendElementWidth = gridSize*2,
+                buckets = 9;
 
-            var this.gridSize = gridSize = Math.floor(width / 24),
-                this.legendElementWidth = legendElementWidth = gridSize*2,
-                this.buckets = buckets = 9;
+            this.gridSize = gridSize;
+            this.legendElementWidth = legendElementWidth;
+            this.buckets = buckets;
 
             this.margin = margin = reD3.util.mixin(margin, oMargin);
 
-            width = this.width = width - margin.left - margin.right;
-            height = this.height = height - margin.top - margin.bottom;
+            this.width = width - this.margin.left - this.margin.right;
+            this.height = height - this.margin.top - this.margin.bottom;
 
             var svg = this.svg = d3.select(this.element).append("svg")
                 .attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom)
+                .attr("height", this.height + this.margin.top + this.margin.bottom)
                 .append("g")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
             var dayLabels = svg.selectAll(".dayLabel")
               .data(this.days)
@@ -72,6 +76,11 @@
                 .range(this.colors);
 
             var gridSize = this.gridSize,
+                legendElementWidth = this.legendElementWidth,
+                buckets = this.buckets;
+
+
+            var gridSize = this.gridSize,
                 colors = this.colors,
                 legendElementWidth = this.legendElementWidth,
                 svg = this.svg,
@@ -93,7 +102,7 @@
               .style("fill", function(d) { return colorScale(d.value); });
 
           heatMap.append("title").text(function(d) { return d.value; });
-              
+
           var legend = svg.selectAll(".legend")
               .data([0].concat(colorScale.quantiles()), function(d) { return d; })
               .enter().append("g")
@@ -101,7 +110,7 @@
 
           legend.append("rect")
             .attr("x", function(d, i) { return legendElementWidth * i; })
-            .attr("y", height - margin.bottom)
+            .attr("y", this.height - margin.bottom)
             .attr("width", legendElementWidth)
             .attr("height", gridSize / 2)
             .style("fill", function(d, i) { return colors[i]; });
@@ -110,7 +119,7 @@
             .attr("class", "mono")
             .text(function(d) { return "≥ " + Math.round(d); })
             .attr("x", function(d, i) { return legendElementWidth * i; })
-            .attr("y", height + gridSize - margin.bottom);
+            .attr("y", this.height + gridSize - margin.bottom);
 
         },
 
