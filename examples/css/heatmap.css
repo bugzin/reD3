@@ -1,0 +1,33 @@
+body {
+    font: 10px sans-serif;
+}
+
+rect.bordered {
+  stroke: #E6E6E6;
+  stroke-width:2px;   
+
+}
+
+text.mono {
+  font-size: 9pt;
+  font-family: Consolas, courier;
+  fill: #aaa;
+}
+
+text.axis-workweek {
+  fill: #000;
+}
+
+text.axis-worktime {
+  fill: #000;
+}
+
+.bordered {
+    border: 1px solid #ccc;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-top: 75px;
+    margin-bottom: 50px;
+    text-align: center;
+}
