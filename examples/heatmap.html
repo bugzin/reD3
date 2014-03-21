@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>
+      HeatMap
+    </title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/line.css">
+    <script src="./../lib/d3.js">
+    </script>
+    <script src="./../src/util.js">
+    </script>
+    <script src="./../src/dayhourheatmap.js">
+    </script>
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="">reD3 [Reusable D3 Charts]</a>
+                <a class="brand" href="">HeatMap</a>
+            </div>
+        </div>
+    </div>
+    <div class="container bordered">
+        <div id="heatmap">
+        </div>
+        <hr />
+        <button id="update" class="btn">
+            Update
+        </button>
+        <p>
+            &nbsp;
+        </p>
+    </div>
+
+    <script>
+        var el = document.getElementById('heatmap');
+        var heatmap = new reD3.DayHourHeatmap(el, {
+            width: 900,
+            height: 500
+        });
+
+        d3.csv("data/heatmap.csv", function(error, data) {
+            data.forEach(function(d) {
+                d.day = +d.weekday,
+                d.hour = +d.hour + 1;
+                d.value = +d.counts
+            });
+            heatmap.render(data);
+        });
+    </script>
+
+</body>
+
+</html>
