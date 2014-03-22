@@ -1,69 +1,73 @@
 <!DOCTYPE HTML>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>
-            Reusable Charts for D3.js
-        </title>
-        <link rel="stylesheet" href="examples/css/bootstrap.min.css">
-        <style>
-            text { font: 11px sans-serif; } .bordered { border:1px solid #ccc; -webkit-border-radius:
-            5px; -moz-border-radius: 5px; border-radius: 5px; margin-top: 75px; margin-bottom:
-            50px; text-align: center; }
-            .bordered {
-            	padding-top: 10px;
-            	height: 500px;
-            }
-            .btn {
-            	width: 250px;
-            }
-        </style>
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+<html ng-app="app">
 
-          ga('create', 'UA-41733895-2', 'bugzu.github.io');
-          ga('send', 'pageview');
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Reusable Charts for D3.js
+    </title>
+    <link rel="stylesheet" href="dist/css/style.css">
+    <style>
+    text {
+        font: 11px sans-serif;
+    }
+    .bordered {
+        border:1px solid #ccc;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        margin-top: 20px;
+        margin-bottom: 50px;
+        text-align: center;
+    }
+    .bordered {
+        padding-top: 10px;
+        height: 500px;
+    }
+    .btn {
+        width: 250px;
+    }
+    </style>
+    <script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-        </script>
-    </head>
-    
-    <body >
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="brand" href="">reD3 [Reusable Charts for D3.js]</a>
-                </div>
+    ga('create', 'UA-41733895-2', 'bugzu.github.io');
+    ga('send', 'pageview');
+    </script>
+</head>
+
+<body>
+
+    <ng-include src="'app/partials/header.html'"></ng-include>
+
+    <div class="container content">
+        <div class="row">
+            <div class="col-md-3">
+                <ng-include src="'app/partials/sidebar.html'"></ng-include>
+            </div>
+            <div class="col-md-9 brdrl">
+                <ng-view></ng-view>
             </div>
         </div>
-        <div class="container bordered">
-            <p>
-                <a href="examples/line.html" class="btn btn-info btn-large">Line Chart</a>
-            </p>
-            <p>
-                <a href="examples/pie.html" class="btn btn-info btn-large">Pie Chart</a>
-            </p>
-        	<p>
-        		<a href="examples/bar.html" class="btn btn-info btn-large">Bar Chart</a>
-        	</p>
-            <p>
-                <a href="examples/area.html" class="btn btn-info btn-large">Area Chart</a>
-            </p>
-            <p>
-                <a href="examples/stackedarea.html" class="btn btn-info btn-large">StackedArea Chart</a>
-            </p>
-            <p>
-                <a href="examples/bubble.html" class="btn btn-info btn-large">Bubble Chart</a>
-            </p>
-            <p>
-                <a href="examples/treemap.html" class="btn btn-info btn-large">Treemap Chart</a>
-            </p>
-            <p>
-                <a href="examples/heatmap.html" class="btn btn-info btn-large">Day/Hour Heatmap</a>
-            </p>
-        </div>
-    </body>
+    </div>
+    <div ng-include="'app/partials/footer.html'"></div>
+    <script src="app/lib/d3/d3.min.js"></script>
+    <script src="dist/js/reD3.min.js"></script>
+    <script src="app/lib/angular/angular.min.js"></script>
+    <script src="app/lib/angular-route/angular-route.min.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/controller.js"></script>
+    <script src="app/directive.js"></script>
+</body>
 
 </html>

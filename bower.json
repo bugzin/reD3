@@ -1,0 +1,10 @@
+{
+  "name": "reD3",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "1.2.15",
+    "angular-route": "~1.2.15",
+    "d3": "~3.4.3"
+  },
+  "devDependencies": {}
+}

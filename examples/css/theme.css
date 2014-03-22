@@ -1,0 +1,57 @@
+.blue-theme {
+    background: rgb(95, 129, 227);
+    background: -webkit-linear-gradient(rgba(239, 68, 35, 0.9), rgba(238, 151, 35, 0.9)), no-repeat 50% 50%;
+    background: -moz-linear-gradient(rgba(239, 68, 35, 0.9), rgba(238, 151, 35, 0.9)), no-repeat 50% 50%;
+    background: -ms-linear-gradient(rgba(239, 68, 35, 0.9), rgba(238, 151, 35, 0.9)), no-repeat 50% 50%;
+    background: linear-gradient(rgba(239, 68, 35, 0.9), rgba(238, 151, 35, 0.9)), no-repeat 50% 50%;
+    background: linear-gradient(rgba(239, 68, 35, 0.9), rgba(238, 151, 35, 0.9)), no-repeat 50% 50%;
+    background-size: cover;
+}
+.blue-theme.features h3 i {
+    color: rgb(95, 129, 227);
+}
+.blue-theme.btn-primary {
+    background-color: #5f81e3;
+    border-color: # 4970df;
+    box-shadow: 0 1px 0 #3c66dd;
+}
+.blue-theme .btn-primary:hover, .blue-theme .btn-primary:focus, .blue-theme .btn-primary:active, .blue-theme .btn-primary.active {
+    background-color: # 3c66dd;
+    border-color: #234ec8;
+}
+.row .charts a {
+    border: 1px solid #eee;
+    border-radius: 2px;
+    width: 350px;
+    padding: 10px;
+    display: block;
+    text-align: center;
+}
+.row .charts img {
+    height: 200px;
+    width: 320px;
+}
+.row .charts img.square {
+    height: 200px;
+    width: 200px;
+}
+header .navbar {
+    border-radius: 0;
+    margin-bottom: 0;
+}
+.content {
+    padding-bottom: 70px;
+    padding-top: 50px;
+}
+.row .brdrl {
+    border-left: 1px solid #eee;
+}
+footer.bg {
+    background-color: #eee;
+    padding-top: 50px;
+    padding-bottom: 50px
+}
+
+footer .container {
+  width: 800px;
+}
