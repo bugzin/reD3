@@ -47,7 +47,7 @@ module.exports = function(grunt) {
         cssmin: {
             combine: {
                 files: {
-                    'dist/css/style.css': [
+                    'dist/css/<%= pkg.name %>.css': [
                         'examples/css/bootstrap.css',
                         'examples/css/area.css',
                         'examples/css/bar.css',
