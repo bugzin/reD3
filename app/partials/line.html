@@ -8,3 +8,20 @@
 <p>
     &nbsp;
 </p>
+
+<pre>
+<code data-language="javascript" class="rainbow">
+var el = document.getElementById('line');
+var line = new reD3.Line(el, {
+    width: 800,
+    height: 500,
+    xValue: 'date',
+    yValue: 'close',
+    yAxisText: 'Price ($)',
+    margin: {
+        top: 20
+    }
+});
+line.render(data);
+</code>
+</pre>

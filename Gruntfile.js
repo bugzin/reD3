@@ -2,6 +2,7 @@ module.exports = function(grunt) {
 
     // Project configuration.
     grunt.initConfig({
+
         pkg: grunt.file.readJSON('package.json'),
 
         clean: ["dist"],
@@ -31,6 +32,13 @@ module.exports = function(grunt) {
                         cwd: 'examples/',
                         src: ['data/*'],
                         dest: 'dist/'
+                    },
+
+                    {
+                        expand: true,
+                        cwd: 'examples/',
+                        src: ['fonts/*'],
+                        dest: 'dist/'
                     }
                 ]
             }
@@ -40,15 +48,15 @@ module.exports = function(grunt) {
             combine: {
                 files: {
                     'dist/css/style.css': [
-                      'examples/css/bootstrap.css',
-                      'examples/css/area.css',
-                      'examples/css/bar.css',
-                      'examples/css/bubble.css',
-                      'examples/css/heatmap.css',
-                      'examples/css/line.css',
-                      'examples/css/stackedarea.css',
-                      'examples/css/treemap.css',
-                      'examples/css/theme.css'
+                        'examples/css/bootstrap.css',
+                        'examples/css/area.css',
+                        'examples/css/bar.css',
+                        'examples/css/bubble.css',
+                        'examples/css/heatmap.css',
+                        'examples/css/line.css',
+                        'examples/css/stackedarea.css',
+                        'examples/css/treemap.css',
+                        'examples/css/theme.css'
                     ]
                 }
             }

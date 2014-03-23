@@ -19,6 +19,7 @@
     background-color: # 3c66dd;
     border-color: #234ec8;
 }
+
 .row .charts a {
     border: 1px solid #eee;
     border-radius: 2px;
@@ -51,7 +52,47 @@ footer.bg {
     padding-top: 50px;
     padding-bottom: 50px
 }
-
 footer .container {
-  width: 800px;
+    width: 800px;
+}
+footer .pl {
+    padding-left: 100px;
+}
+text {
+    font: 11px sans-serif;
+}
+.bordered {
+    border:1px solid #ccc;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+.bordered {
+    padding-top: 10px;
+    height: 500px;
+}
+.btn {
+    min-width: 250px;
+}
+
+body {
+    /*color: #777983;*/
+}
+
+.chartarea h3 {
+    margin-top: 0;
+}
+
+
+.icon-github {
+    background: url(../images/github.png) no-repeat 0 0;
+    background-size: 18px 18px;
+    position: absolute;
+    left: 60px;
+    top: 8px;
+    height: 20px;
+    width: 20px;
 }

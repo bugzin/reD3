@@ -8,3 +8,19 @@
 <p>
     &nbsp;
 </p>
+<pre>
+<code>
+var el = document.getElementById('pie');
+var pie = new reD3.Pie(el, {
+    width: 500,
+    height: 500,
+    text: 'age',
+    color: 'age',
+    value: 'population',
+    onClick: function(d) {
+        console.log(d)
+    }
+});
+pie.render(data);
+</code>
+</pre>

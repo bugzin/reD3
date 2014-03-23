@@ -8,3 +8,20 @@
 <p>
     &nbsp;
 </p>
+<pre>
+<code>
+var el = document.getElementById('area');
+var area = new reD3.Area(el, {
+    width: 800,
+    height: 500,
+    xValue: 'date',
+    yValue: 'close',
+    yAxisText: 'Price',
+    color: '#ab34aa',
+    margin: {
+        top: 20
+    }
+});
+area.render(data);
+</code>
+</pre>

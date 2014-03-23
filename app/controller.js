@@ -38,7 +38,6 @@ function LineCtrl($scope, $window) {
             line.render(data);
         });
     }
-
 }
 
 function PieCtrl($scope, $window) {

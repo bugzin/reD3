@@ -8,3 +8,25 @@
 <p>
     &nbsp;
 </p>
+<pre>
+<code>
+var el = document.getElementById('bar');
+var options = {
+    width: 800,
+    height: 600,
+    yAxisText: 'Frequency',
+    yValue: 'frequency',
+    xValue: 'letter',
+    onClick: function(d) {
+        console.log(d);
+    },
+    onMouseOver: function(d) {
+        console.log(d);
+    },
+    onMouseOut: function(d) {}
+};
+
+var bar = new reD3.Bar(el, options);
+bar.render(data);
+</code>
+</pre>

@@ -18,13 +18,3 @@ text.axis-workweek {
 text.axis-worktime {
   fill: #000;
 }
-
-.bordered {
-    border: 1px solid #ccc;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    margin-top: 75px;
-    margin-bottom: 50px;
-    text-align: center;
-}

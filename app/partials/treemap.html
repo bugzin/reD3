@@ -10,3 +10,19 @@
 <p>
     &nbsp;
 </p>
+<pre>
+<code>
+var el = document.getElementById('treemap');
+var treemap = new reD3.Treemap(el, {
+    width: 800,
+    height: 600,
+    text: 'title',
+    color: 'title',
+    onClick: function(d) {
+        console.log(d)
+    }
+});
+
+treemap.render(data);
+</code>
+</pre>

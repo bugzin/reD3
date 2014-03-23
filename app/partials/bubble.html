@@ -8,3 +8,18 @@
 <p>
     &nbsp;
 </p>
+<pre>
+<code>
+var el = document.getElementById('bubble');
+var bubble = new reD3.Bubble(el, {
+    diameter: 800,
+    text: 'cname',
+    color: 'name',
+    onClick: function(d) {
+        console.log(d)
+    }
+});
+
+bubble.render(data);
+</code>
+</pre>

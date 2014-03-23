@@ -11,12 +11,3 @@
     stroke: steelblue;
     stroke-width: 1.5px;
 }
-.bordered {
-    border: 1px solid #ccc;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    margin-top: 75px;
-    margin-bottom: 50px;
-    text-align: center;
-}
