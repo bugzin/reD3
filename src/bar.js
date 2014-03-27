@@ -100,7 +100,7 @@
                     return y(d[yValue]);
                 })
                 .attr("height", function(d) {
-                    return height - y(d.frequency);
+                    return height - y(d[yValue]);
                 }).on('mousedown', function(d) {
                     if (options.onClick)
                         options.onClick(d);
