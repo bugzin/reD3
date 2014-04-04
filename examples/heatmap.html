@@ -30,7 +30,7 @@
         </div>
         <hr />
         <p>
-            &nbsp;
+            Demo for Heatmap with time format option (24 Hours) and click event on rect.
         </p>
     </div>
 
@@ -38,8 +38,13 @@
         var el = document.getElementById('heatmap');
         var heatmap = new reD3.DayHourHeatmap(el, {
             width: 900,
-            height: 500
-        });
+            height: 500,
+			time_format : '24',
+			onClick : function(d){
+				console.log('Day:'+d.day);
+				console.log('Hour:'+d.hour);
+			}
+        }); 
 
         d3.csv("data/heatmap.csv", function(error, data) {
             data.forEach(function(d) {
