@@ -1,0 +1,30 @@
+{
+  "name": "reD3",
+  "version": "0.0.1",
+  "homepage": "http://bugzu.github.io/reD3",
+  "authors": [
+    "Gaurav Sharma <https://twitter.com/bugzu>"
+  ],
+  "description": "Reusable D3 Charts/Components",
+  "main": [
+    "./dist/js/reD3.min.js",
+    "./dist/css/reD3.css"
+  ],
+  "keywords": [
+    "red3",
+    "d3",
+    "charts"
+  ],
+  "license": "Apache License, Version 2.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "d3": "~3.4.6"
+  }
+}

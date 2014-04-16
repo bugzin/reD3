@@ -44,6 +44,17 @@ module.exports = function(grunt) {
                     ]
                 }
             }
+        },
+
+        connect: {
+            server: {
+              options: {
+                port: 9001,
+                base: './',
+                open: 'http://localhost:9001/examples/',
+                keepalive: true
+              }
+            }
         }
     });
 
@@ -52,8 +63,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-connect');
 
     // Default task(s).
     grunt.registerTask('default', ['clean', 'uglify', 'copy', 'cssmin']);
+    grunt.registerTask('serve', ['connect']);
 
 };
