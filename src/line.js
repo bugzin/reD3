@@ -70,6 +70,7 @@
             y = this.y,
             xAxis = this.xAxis,
             yAxis = this.yAxis,
+            width = this.width,
             height = this.height,
             xValue = this.xValue,
             yValue = this.yValue,
@@ -102,6 +103,41 @@
                 .datum(data)
                 .attr("class", "line")
                 .attr("d", line);
+
+            var focus = svg.append("g")
+                .attr("class", "focus")
+                .style("display", "none");
+
+            focus.append("circle")
+                .attr("r", 4.5);
+
+            focus.append("text")
+                .attr("x", 9)
+                .attr("dy", ".35em");
+
+            svg.append("rect")
+                .attr("class", "overlay")
+                .attr("width", width)
+                .attr("height", height)
+                .on("mouseover", function() { focus.style("display", null); })
+                .on("mouseout", function() { focus.style("display", "none"); })
+                .on("mousemove", mousemove);
+
+            function mousemove() {
+              var bisector = d3.bisector(function(d) { return d[xValue]; }).left;
+              var sorted_data = data.sort(function(a, b) {
+                  return a[xValue] - b[xValue];
+              });
+
+              var x0 = x.invert(d3.mouse(this)[0]),
+                  i = bisector(sorted_data, x0),
+                  d0 = sorted_data[i - 1],
+                  d1 = sorted_data[i],
+                  d = x0 - d0[xValue] > d1[xValue] - x0 ? d1 : d0;
+
+              focus.attr("transform", "translate(" + x(d[xValue]) + "," + y(d[yValue]) + ")");
+              focus.select("text").text(d[yValue]);
+            }
 
         },
 
