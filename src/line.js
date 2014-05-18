@@ -21,6 +21,7 @@
             this.xValue = xValue;
             this.yValue = yValue;
             this.yAxisText = options.yAxisText || '';
+            this.mouseoverValue = options.mouseoverValue || false;
             
             var margin = {
                 top: 20,
@@ -76,6 +77,7 @@
             yValue = this.yValue,
             yAxisText = this.yAxisText,
             line = this.line;
+            mouseoverValue = this.mouseoverValue;
 
             x.domain(d3.extent(data, function(d) {
                 return d[xValue];
@@ -103,6 +105,10 @@
                 .datum(data)
                 .attr("class", "line")
                 .attr("d", line);
+
+
+            if (!mouseoverValue)
+                return;
 
             var focus = svg.append("g")
                 .attr("class", "focus")
