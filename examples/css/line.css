@@ -23,3 +23,14 @@ body {
     margin-bottom: 50px;
     text-align: center;
 }
+
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.focus circle {
+  fill: none;
+  stroke: steelblue;
+}
